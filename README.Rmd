@@ -1,0 +1,78 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# gmmDenoise <img src="man/figures/logo.png" align="right" width="120" />
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+# Overview
+
+gmmDenoise is a set of functions for denoising amplicon sequence variants (ASVs) inferred from metabarcoding analysis, based on Gaussian mixture modeling (GMM).
+
+## Installation
+
+```{r, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("YSKoseki/gmmDenoise")
+```
+
+## Example
+
+This is an example of how gmmDenoise works for denoising metabarcoding sequence data.
+
+```{r, results = 'hide'}
+library(gmmDenoise)
+```
+
+```{r example, warning = FALSE, results = 'hide'}
+# Data: Read counts of 1,217 amplicon sequence variants (ASVs) from an
+#   eDNA metabarcoding study
+data(mifish)
+head(mifish, n = 10)
+
+# Plot histogram for visual inspection of ASV read count distribution
+asvhist(mifish)
+asvhist(mifish, type = "density", nbins = 30, xlim = c(1, 6))
+
+# Cross-validation analysis for selecting the number of components of Gaussian
+#   mixture model
+logmf <- log10(mifish)
+set.seed(101)
+cv <- gmmcv(logmf, epsilon = 1e-03)
+autoplot(cv)
+
+# An alternative approach for the number of mixture components: Sequential
+#   parametric bootstrap tests 
+set.seed(101)
+# May take some time
+bs <- gmmbs(logmf, B = 100, epsilon = 1e-03)
+p <- autoplot(bs)
+library(cowplot)
+plot_grid(plotlist = p, ncol = 2)
+summary(bs)
+
+# Fit 3-component Gaussian mixture model and displays a graphical representation of the output
+set.seed(101)
+mod <- gmmem(logmf, k = 3)
+autoplot(mod)
+thresh <- quantile(mod, comp = 2)
+autoplot(mod, vline = c(NA, thresh, NA))
+```
+
+<!--
+You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/v1/examples>.
+-->
+
