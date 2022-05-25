@@ -33,11 +33,11 @@ devtools::install_github("YSKoseki/gmmDenoise")
 
 This is an example of how gmmDenoise works for denoising metabarcoding sequence data.
 
-```{r, results = 'hide'}
+```{r, message = FALSE}
 library(gmmDenoise)
 ```
 
-```{r example, warning = FALSE, results = 'hide'}
+```{r example, warning = FALSE, results = 'hide', out.width = "50%"}
 # Data: Read counts of 1,217 amplicon sequence variants (ASVs) from an
 #   eDNA metabarcoding study
 data(mifish)

@@ -26,7 +26,6 @@ sequence data.
 
 ``` r
 library(gmmDenoise)
-#>  要求されたパッケージ ggplot2 をロード中です
 ```
 
 ``` r
@@ -39,13 +38,13 @@ head(mifish, n = 10)
 asvhist(mifish)
 ```
 
-<img src="man/figures/README-example-1.png" width="100%" />
+<img src="man/figures/README-example-1.png" width="50%" />
 
 ``` r
 asvhist(mifish, type = "density", nbins = 30, xlim = c(1, 6))
 ```
 
-<img src="man/figures/README-example-2.png" width="100%" />
+<img src="man/figures/README-example-2.png" width="50%" />
 
 ``` r
 # Cross-validation analysis for selecting the number of components of Gaussian
@@ -56,7 +55,7 @@ cv <- gmmcv(logmf, epsilon = 1e-03)
 autoplot(cv)
 ```
 
-<img src="man/figures/README-example-3.png" width="100%" />
+<img src="man/figures/README-example-3.png" width="50%" />
 
 ``` r
 # An alternative approach for the number of mixture components: Sequential
@@ -69,7 +68,7 @@ library(cowplot)
 plot_grid(plotlist = p, ncol = 2)
 ```
 
-<img src="man/figures/README-example-4.png" width="100%" />
+<img src="man/figures/README-example-4.png" width="50%" />
 
 ``` r
 summary(bs)
@@ -80,14 +79,14 @@ mod <- gmmem(logmf, k = 3)
 autoplot(mod)
 ```
 
-<img src="man/figures/README-example-5.png" width="100%" />
+<img src="man/figures/README-example-5.png" width="50%" />
 
 ``` r
 thresh <- quantile(mod, comp = 2)
 autoplot(mod, vline = c(NA, thresh, NA))
 ```
 
-<img src="man/figures/README-example-6.png" width="100%" />
+<img src="man/figures/README-example-6.png" width="50%" />
 
 <!--
 You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/v1/examples>.
