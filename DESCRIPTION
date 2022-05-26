@@ -1,5 +1,5 @@
 Package: gmmDenoise
-Version: 0.0.0.9000
+Version: 0.1.0
 Title: A set of functions for GMM-based denoising of metabarcoding sequence data
 Authors@R: person(given = "Yusuke",
                   family = "Koseki",
@@ -13,7 +13,7 @@ URL: https://github.com/YSKoseki/gmmDenoise
 BugReport: https://github.com/YSKoseki/gmmDenoise/issues
 Depends:
     R (>= 4.1.0),
-    ggplot2 (>= 2.0.0)
+    ggplot2 (>= 3.3.0)
 Imports:
     grDevices,
     scales,
@@ -29,16 +29,3 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.0
-Collate:
-    'asvhist.R'
-    'autoplot.gmmbs.R'
-    'autoplot.gmmcv.R'
-    'autoplot.gmmem.R'
-    'data.R'
-    'fitted.gmmem.R'
-    'gmmbs.R'
-    'gmmcv.R'
-    'gmmDenoise-package.R'
-    'gmmem.R'
-    'quantile.gmmem.R'
-    'summary.gmmbs.R'
