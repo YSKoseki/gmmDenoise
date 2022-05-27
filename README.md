@@ -4,6 +4,8 @@
 # gmmDenoise <img src="man/figures/logo.png" align="right" width="120" />
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/YSKoseki/gmmDenoise/workflows/R-CMD-check/badge.svg)](https://github.com/YSKoseki/gmmDenoise/actions)
 <!-- badges: end -->
 
 # Overview
