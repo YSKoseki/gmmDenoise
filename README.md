@@ -75,7 +75,7 @@ plot_grid(plotlist = p, ncol = 2)
 ``` r
 summary(bs)
 
-# Fit 3-component Gaussian mixture model and displays a graphical representation of the output
+# Fit 3-component Gaussian mixture model and display a graphical representation of the output
 set.seed(101)
 mod <- gmmem(logmf, k = 3)
 autoplot(mod)
