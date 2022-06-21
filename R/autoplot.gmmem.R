@@ -92,15 +92,15 @@ autoplot.gmmem <- function(object, scale = "log", type = "freq", nbins = "FD",
     n <- length(raw.x)
     p <- ggplot() +
       geom_histogram(data = hist.df,
-                     mapping = aes(raw.x, ..count..),
+                     mapping = aes(x = raw.x, y = ..count..),
                      bins = nb, breaks = brk,
                      color = hist.color, fill = hist.fill) +
       geom_line(data = density.df,
-                mapping = aes(x, density * n * bw, color = comp),
+                mapping = aes(x = x, y = density * n * bw, color = comp),
                 size = 1.1) +
       scale_color_manual(values = dist.color) +
       geom_area(data = density.df,
-                mapping = aes(x, density * n * bw, fill = comp),
+                mapping = aes(x = x, y = density * n * bw, fill = comp),
                 position = position_identity(), alpha = dist.alpha) +
       scale_fill_manual(values = dist.fill) +
       geom_vline(xintercept = vline, color = vline.color, size = .8) +
@@ -117,13 +117,13 @@ autoplot.gmmem <- function(object, scale = "log", type = "freq", nbins = "FD",
   if (type == "density") {
     p <- ggplot() +
       geom_histogram(data = hist.df,
-                     mapping = aes(raw.x, ..density..),
+                     mapping = aes(x = raw.x, y = ..density..),
                      bins = nb, breaks = brk,
                      color = hist.color, fill = hist.fill) +
-      geom_line(data = density.df, mapping = aes(x, density, color = comp),
+      geom_line(data = density.df, mapping = aes(x = x, y = density, color = comp),
                 size = 1.1) +
       scale_color_manual(values = dist.color) +
-      geom_area(data = density.df, mapping = aes(x, density, fill = comp),
+      geom_area(data = density.df, mapping = aes(x = x, y = density, fill = comp),
                 position = position_identity(), alpha = dist.alpha) +
       scale_fill_manual(values = dist.fill) +
       geom_vline(xintercept = vline, color = vline.color, size = .8) +
