@@ -39,18 +39,24 @@
 gmmem <- function(x, k, maxit = 1000, epsilon = 1e-8, ...) {
   if (!is.vector(x))
     stop("use only with a vector")
-  if (k==1) {
+  if (k == 1) {
     gmm <- NULL
     gmm$x <- x
     names(gmm$x) <- NULL
     gmm$lambda <- 1
     gmm$mu <- mean(x)
     gmm$sigma <- sd(x)
-    den <- dnorm(gmm$x, mean=gmm$mu, sd=gmm$sigma)
+    den <- dnorm(gmm$x, mean = gmm$mu, sd = gmm$sigma)
     gmm$loglik <- sum(log(den))
   }
   else {
     gmm <- normalmixEM(x, k = k, maxit = maxit, epsilon = epsilon, ...)
+    comp.ord <- order(gmm$mu)
+    gmm$mu <- gmm$mu[comp.ord]
+    gmm$sigma <- gmm$sigma[comp.ord]
+    gmm$lambda <- gmm$lambda[comp.ord]
+    gmm$posterior <- gmm$posterior[, comp.ord]
+    colnames(gmm$posterior) <- colnames(gmm$posterior)[comp.ord]
   }
   class(gmm) <- c("gmmem")
   return(gmm)
