@@ -4,16 +4,21 @@
 \alias{gmmcv}
 \title{Perform cross-validation analysis for the number of mixture components}
 \usage{
-gmmcv(x, maxk = 10, maxit = 1000, epsilon = 1e-08)
+gmmcv(x, maxk = 10, maxit = 1000, maxrestarts = 20, epsilon = 1e-08)
 }
 \arguments{
 \item{x}{A vector of length n consisting of the data.}
 
-\item{maxk}{The maximum number of components to consider.}
+\item{maxk}{The maximum number of components to consider. Default is 10.}
 
-\item{maxit}{The maximum number of iterations. See \code{\link[mixtools:normalmixEM]{mixtools::normalmixEM()}}.}
+\item{maxit}{The maximum number of iterations. Default is 1000.}
 
-\item{epsilon}{The convergence criterion. See \code{\link[mixtools:normalmixEM]{mixtools::normalmixEM()}}.}
+\item{maxrestarts}{The maximum number of restarts allowed in case of a
+problem with the particular starting values chosen due to one of the
+variance estimates getting too small (each restart uses randomly chosen
+starting values). Default is 20.}
+
+\item{epsilon}{The convergence criterion. Default is 1e-08.}
 }
 \value{
 A list object of class \code{gmmcv} with items:
@@ -43,4 +48,7 @@ Software, 32(6), 1-29. \url{https://doi.org/10.18637/jss.v032.i06}
 In 36-402, Advanced Data Analysis (pp. 1-23).
 \url{https://www.stat.cmu.edu/~cshalizi/402/lectures/20-mixture-examples/lecture-20.pdf}
 }
+}
+\seealso{
+\code{\link[mixtools:normalmixEM]{mixtools::normalmixEM()}}
 }

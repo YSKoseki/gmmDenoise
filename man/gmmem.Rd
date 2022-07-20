@@ -4,16 +4,43 @@
 \alias{gmmem}
 \title{Fit k-component Gaussian mixture models}
 \usage{
-gmmem(x, k, maxit = 1000, epsilon = 1e-08, ...)
+gmmem(
+  x,
+  k,
+  lambda = NULL,
+  mu = NULL,
+  sigma = NULL,
+  maxit = 1000,
+  maxrestarts = 20,
+  epsilon = 1e-08,
+  ...
+)
 }
 \arguments{
 \item{x}{A vector of length n consisting of the data.}
 
 \item{k}{Number of components.}
 
-\item{maxit}{The maximum number of iterations. See \code{\link[mixtools:normalmixEM]{mixtools::normalmixEM()}}.}
+\item{lambda}{Initial value of mixing proportions. Default is NULL (randomly
+generated from a uniform Dirichlet distribution).}
 
-\item{epsilon}{The convergence criterion. See \code{\link[mixtools:normalmixEM]{mixtools::normalmixEM()}}.}
+\item{mu}{Starting value of vector of component means. Default is NULL
+(randomly generated from a normal distribution with center(s) determined
+by binning the data).}
+
+\item{sigma}{Starting value of vector of component standard deviations.
+Default is NULL (given as the reciprocal of the square root of a vector
+of random exponential-distribution values whose means are determined
+according to a binning method done on the data.}
+
+\item{maxit}{The maximum number of iterations. Default is 1000.}
+
+\item{maxrestarts}{The maximum number of restarts allowed in case of a
+problem with the particular starting values chosen due to one of the
+variance estimates getting too small (each restart uses randomly chosen
+starting values). Default is 20.}
+
+\item{epsilon}{The convergence criterion. Default is 1e-08.}
 
 \item{...}{Additional arguments passed to \code{\link[mixtools:normalmixEM]{mixtools::normalmixEM()}}.}
 }
@@ -49,4 +76,7 @@ autoplot(mod, vline = c(NA, thresh, NA))
 Benaglia, T., Chauveau, D., Hunter, D. R., & Young, D. S. (2009). mixtools:
 An R package for analyzing finite mixture models. Journal of Statistical
 Software, 32(6), 1-29. \url{https://doi.org/10.18637/jss.v032.i06}
+}
+\seealso{
+\code{\link[mixtools:normalmixEM]{mixtools::normalmixEM()}}
 }

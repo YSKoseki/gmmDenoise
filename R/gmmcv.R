@@ -7,9 +7,13 @@
 #' @importFrom stats sd dnorm
 #' @importFrom mixtools normalmixEM
 #' @param x A vector of length n consisting of the data.
-#' @param maxk The maximum number of components to consider.
-#' @param maxit The maximum number of iterations. See [mixtools::normalmixEM()].
-#' @param epsilon The convergence criterion. See [mixtools::normalmixEM()].
+#' @param maxk The maximum number of components to consider. Default is 10.
+#' @param maxit The maximum number of iterations. Default is 1000.
+#' @param maxrestarts The maximum number of restarts allowed in case of a
+#'     problem with the particular starting values chosen due to one of the
+#'     variance estimates getting too small (each restart uses randomly chosen
+#'     starting values). Default is 20.
+#' @param epsilon The convergence criterion. Default is 1e-08.
 #' @return A list object of class `gmmcv` with items:
 #' \describe{
 #'   \item{k}{The number of mixture components considered.}
@@ -22,6 +26,7 @@
 #' * Shalizi, C. R. (2011). Lecture 20, Mixture Examples and Complements.
 #'     In 36-402, Advanced Data Analysis (pp. 1-23).
 #'     <https://www.stat.cmu.edu/~cshalizi/402/lectures/20-mixture-examples/lecture-20.pdf>
+#' @seealso [mixtools::normalmixEM()]
 #' @examples
 #' data(mifish)
 #' logmf <- log10(mifish)
@@ -29,7 +34,8 @@
 #' cv <- gmmcv(logmf, epsilon = 1e-03)
 #' autoplot(cv)
 #' @export
-gmmcv <- function(x, maxk = 10, maxit = 1000, epsilon = 1e-08) {
+gmmcv <- function(x, maxk = 10, maxit = 1000, maxrestarts = 20,
+                  epsilon = 1e-08) {
   if (!is.vector(x))
     stop("use only with a vector")
   n <- length(x)
@@ -50,7 +56,8 @@ gmmcv <- function(x, maxk = 10, maxit = 1000, epsilon = 1e-08) {
   # Calculate log-likelihoods for GMMs with different numbers of components
   for (i in 2:maxk) {
     mixEM <- NULL
-    mixEM <- normalmixEM(x[train], k = i, maxit = maxit, epsilon = epsilon)
+    mixEM <- normalmixEM(x[train], k = i, maxit = maxit,
+                         maxrestarts = maxrestarts, epsilon = epsilon)
     log.lik[[i]] <- logliknormix(x[test], mixEM = mixEM)
   }
   y <- list(k = k, log.lik = log.lik)

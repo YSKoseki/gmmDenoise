@@ -7,8 +7,21 @@
 #' @importFrom mixtools normalmixEM
 #' @param x A vector of length n consisting of the data.
 #' @param k Number of components.
-#' @param maxit The maximum number of iterations. See [mixtools::normalmixEM()].
-#' @param epsilon The convergence criterion. See [mixtools::normalmixEM()].
+#' @param lambda Initial value of mixing proportions. Default is NULL (randomly
+#'     generated from a uniform Dirichlet distribution).
+#' @param mu Starting value of vector of component means. Default is NULL
+#'     (randomly generated from a normal distribution with center(s) determined
+#'     by binning the data).
+#' @param sigma Starting value of vector of component standard deviations.
+#'     Default is NULL (given as the reciprocal of the square root of a vector
+#'     of random exponential-distribution values whose means are determined
+#'     according to a binning method done on the data.
+#' @param maxit The maximum number of iterations. Default is 1000.
+#' @param maxrestarts The maximum number of restarts allowed in case of a
+#'     problem with the particular starting values chosen due to one of the
+#'     variance estimates getting too small (each restart uses randomly chosen
+#'     starting values). Default is 20.
+#' @param epsilon The convergence criterion. Default is 1e-08.
 #' @param ... Additional arguments passed to [mixtools::normalmixEM()].
 #' @return A list object of class `gmmem` with items:
 #' \describe{
@@ -27,6 +40,7 @@
 #' Benaglia, T., Chauveau, D., Hunter, D. R., & Young, D. S. (2009). mixtools:
 #'     An R package for analyzing finite mixture models. Journal of Statistical
 #'     Software, 32(6), 1-29. <https://doi.org/10.18637/jss.v032.i06>
+#' @seealso [mixtools::normalmixEM()]
 #' @examples
 #' data(mifish)
 #' logmf <- log10(mifish)
@@ -36,7 +50,8 @@
 #' thresh <- quantile(mod, comp = 2)
 #' autoplot(mod, vline = c(NA, thresh, NA))
 #' @export
-gmmem <- function(x, k, maxit = 1000, epsilon = 1e-8, ...) {
+gmmem <- function(x, k, lambda = NULL, mu = NULL, sigma = NULL,
+                  maxit = 1000, maxrestarts=20, epsilon = 1e-8, ...) {
   if (!is.vector(x))
     stop("use only with a vector")
   if (k == 1) {
@@ -50,7 +65,9 @@ gmmem <- function(x, k, maxit = 1000, epsilon = 1e-8, ...) {
     gmm$loglik <- sum(log(den))
   }
   else {
-    gmm <- normalmixEM(x, k = k, maxit = maxit, epsilon = epsilon, ...)
+    gmm <- normalmixEM(x, k = k, lambda = lambda, mu = mu, sigma = sigma,
+                       maxit = maxit, maxrestarts = maxrestarts,
+                       epsilon = epsilon, ...)
     comp.ord <- order(gmm$mu)
     gmm$mu <- gmm$mu[comp.ord]
     gmm$sigma <- gmm$sigma[comp.ord]
