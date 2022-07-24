@@ -6,7 +6,7 @@
 \usage{
 gmmem(
   x,
-  k,
+  k = 2,
   lambda = NULL,
   mu = NULL,
   sigma = NULL,
@@ -19,7 +19,7 @@ gmmem(
 \arguments{
 \item{x}{A vector of length n consisting of the data.}
 
-\item{k}{Number of components.}
+\item{k}{Number of components. Default is 2.}
 
 \item{lambda}{Initial value of mixing proportions. Default is NULL (randomly
 generated from a uniform Dirichlet distribution).}

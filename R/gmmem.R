@@ -6,7 +6,7 @@
 #' @importFrom stats sd dnorm
 #' @importFrom mixtools normalmixEM
 #' @param x A vector of length n consisting of the data.
-#' @param k Number of components.
+#' @param k Number of components. Default is 2.
 #' @param lambda Initial value of mixing proportions. Default is NULL (randomly
 #'     generated from a uniform Dirichlet distribution).
 #' @param mu Starting value of vector of component means. Default is NULL
@@ -50,7 +50,7 @@
 #' thresh <- quantile(mod, comp = 2)
 #' autoplot(mod, vline = c(NA, thresh, NA))
 #' @export
-gmmem <- function(x, k, lambda = NULL, mu = NULL, sigma = NULL,
+gmmem <- function(x, k = 2, lambda = NULL, mu = NULL, sigma = NULL,
                   maxit = 1000, maxrestarts=20, epsilon = 1e-8, ...) {
   if (!is.vector(x))
     stop("use only with a vector")
