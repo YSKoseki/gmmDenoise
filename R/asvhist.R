@@ -34,7 +34,8 @@ asvhist <- function(x, scale = "log", type = "freq", nbins = "FD",
   count <- ..density.. <- NULL
   if (scale == "log") {
     x <- log10(x)
-  } else {
+  }
+  if (scale == "normal") {
     x <- x
   }
   if (is.null(nbins) | is.numeric(nbins)) {
@@ -70,8 +71,9 @@ asvhist <- function(x, scale = "log", type = "freq", nbins = "FD",
       ylab("Density")
   }
   if (scale == "log") {
-    h <- h + xlab("Log(ASV read count)")
-  } else {
+    h <- h + xlab("Log10(ASV read count)")
+  }
+  if (scale == "normal") {
     h <- h + xlab("ASV read count")
   }
   return(h)
