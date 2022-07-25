@@ -32,7 +32,7 @@
 #'     `"Freedman-Diaconis"`; see [grDevices::nclass.FD()]. Other options are
 #'     `"Scott"` and `"Sturges"`; see [grDevices::nclass.scott()] and
 #'     [grDevices::nclass.Sturges()], respectively.
-#' @seealso [gmmem()], [fitted.gmmem()], [quantile.gmmem()]
+#' @seealso [gmmem()], [predict.gmmem()], [quantile.gmmem()]
 #' @return A ggplot2 plot
 #' @examples
 #' data(mifish)
@@ -84,9 +84,9 @@ autoplot.gmmem <- function(object, scale = "log", type = "freq", nbins = "FD",
   if (is.null(dist.alpha)) dist.alpha <- .3
   if (is.null(vline.color)) vline.color <- wes[1:length(vline)]
   hist.df <- data.frame(raw.x = raw.x)
-  density.df <- fitted.gmmem(object)
   # Count plot
   if (type == "freq") {
+    density.df <- predict.gmmem(object)
     if (!is.null(nb)) bw <- diff(range(raw.x)) / nb
     else bw <- diff(range(raw.x)) / (length(brk) - 1)
     n <- length(raw.x)
@@ -115,6 +115,8 @@ autoplot.gmmem <- function(object, scale = "log", type = "freq", nbins = "FD",
   }
   # Density plot
   if (type == "density") {
+    new.x <- seq(min(raw.x), max(raw.x), length.out = 1000)
+    density.df <- predict.gmmem(object, newdata = new.x)
     p <- ggplot() +
       geom_histogram(data = hist.df,
                      mapping = aes(x = raw.x, y = ..density..),
