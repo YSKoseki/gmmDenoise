@@ -76,5 +76,5 @@ thresh <- quantile(mod, comp = 2)
 autoplot(mod, vline = c(NA, thresh, NA))
 }
 \seealso{
-\code{\link[=gmmem]{gmmem()}}, \code{\link[=fitted.gmmem]{fitted.gmmem()}}, \code{\link[=quantile.gmmem]{quantile.gmmem()}}
+\code{\link[=gmmem]{gmmem()}}, \code{\link[=predict.gmmem]{predict.gmmem()}}, \code{\link[=quantile.gmmem]{quantile.gmmem()}}
 }
