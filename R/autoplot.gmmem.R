@@ -51,7 +51,7 @@ autoplot.gmmem <- function(object, scale = "log", type = "freq", nbins = "FD",
                            dist.color = NULL, dist.fill = NULL,
                            dist.alpha = NULL, vline.color = NULL, ...) {
   if (!inherits(object, "gmmem"))
-    stop("use only with \'gmmem\' objects")
+    stop("The object needs to be a \'gmmem\'-class")
   x <- density <- comp <- ..count.. <- ..density.. <- NULL
   # Set bin number or bin break points
   raw.x <- object$x
