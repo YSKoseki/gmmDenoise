@@ -86,7 +86,8 @@ autoplot.gmmem <- function(object, scale = "log", type = "freq", nbins = "FD",
   hist.df <- data.frame(raw.x = raw.x)
   # Count plot
   if (type == "freq") {
-    density.df <- predict.gmmem(object)
+    new.x <- seq(min(raw.x), max(raw.x), length.out = 1000)
+    density.df <- predict.gmmem(object, newdata = new.x)
     if (!is.null(nb)) bw <- diff(range(raw.x)) / nb
     else bw <- diff(range(raw.x)) / (length(brk) - 1)
     n <- length(raw.x)
