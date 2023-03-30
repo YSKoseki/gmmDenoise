@@ -10,9 +10,9 @@
 
 # Overview
 
-gmmDenoise is a set of functions for denoising amplicon sequence
-variants (ASVs) inferred from metabarcoding analysis, based on Gaussian
-mixture modeling (GMM).
+gmmDenoise is a set of functions for filtering erroneous sequences or
+amplicon sequence variants (ASVs) in eDNA metabarcoding data, based on
+Gaussian mixture modeling (GMM).
 
 ## Installation
 
@@ -23,16 +23,15 @@ devtools::install_github("YSKoseki/gmmDenoise")
 
 ## Example
 
-This is an example of how gmmDenoise works for denoising metabarcoding
-sequence data.
+This is an example of how gmmDenoise works for the filtering of ASVs.
 
 ``` r
 library(gmmDenoise)
 ```
 
 ``` r
-# Data: Read counts of 1,217 amplicon sequence variants (ASVs) from an
-#   eDNA metabarcoding study
+# Data: a vector of 1,217 ASV read counts, named with assigned taxonomic names
+# and [ID numbers]
 data(mifish)
 head(mifish, n = 10)
 
@@ -50,22 +49,22 @@ asvhist(mifish, type = "density", nbins = 30, xlim = c(1, 6))
 
 ``` r
 # Cross-validation analysis for selecting the number of components of Gaussian
-#   mixture model
+# mixture model
 logmf <- log10(mifish)
 set.seed(101)
 cv <- gmmcv(logmf, epsilon = 1e-03)
-autoplot(cv)
+autoplot(cv)  # equivalent to `autoplot.gmmcv(cv)`
 ```
 
 <img src="man/figures/README-example-3.png" width="50%" />
 
 ``` r
 # An alternative approach for the number of mixture components: Sequential
-#   parametric bootstrap tests 
+# parametric bootstrap tests 
 set.seed(101)
 # May take some time
 bs <- gmmbs(logmf, B = 100, epsilon = 1e-03)
-p <- autoplot(bs)
+p <- autoplot(bs)  # equivalent to `p <- autoplot.gmmbs(bs)`
 library(cowplot)
 plot_grid(plotlist = p, ncol = 2)
 ```
@@ -75,10 +74,11 @@ plot_grid(plotlist = p, ncol = 2)
 ``` r
 summary(bs)
 
-# Fit 3-component Gaussian mixture model and display a graphical representation of the output
+# Fit 3-component Gaussian mixture model and display a graphical representation
+# of the output
 set.seed(101)
 mod <- gmmem(logmf, k = 3)
-autoplot(mod)
+autoplot(mod) # equivalent to `autoplot.gmmem(mod)`
 ```
 
 <img src="man/figures/README-example-5.png" width="50%" />
@@ -89,6 +89,15 @@ autoplot(mod, vline = c(NA, thresh, NA))
 ```
 
 <img src="man/figures/README-example-6.png" width="50%" />
+
+``` r
+# Filter ASVs with the threshold value
+logmf2 <- logmf[which(logmf > thresh)]
+mifish2 <- mifish[which(logmf > thresh)]
+asvhist(mifish2)
+```
+
+<img src="man/figures/README-example-7.png" width="50%" />
 
 <!--
 You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/v1/examples>.

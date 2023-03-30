@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 
 # Overview
 
-gmmDenoise is a set of functions for denoising amplicon sequence variants (ASVs) inferred from metabarcoding analysis, based on Gaussian mixture modeling (GMM).
+gmmDenoise is a set of functions for filtering erroneous sequences or amplicon sequence variants (ASVs) in eDNA metabarcoding data, based on Gaussian mixture modeling (GMM).
 
 ## Installation
 
@@ -32,15 +32,15 @@ devtools::install_github("YSKoseki/gmmDenoise")
 
 ## Example
 
-This is an example of how gmmDenoise works for denoising metabarcoding sequence data.
+This is an example of how gmmDenoise works for the filtering of ASVs.
 
 ```{r, message = FALSE}
 library(gmmDenoise)
 ```
 
 ```{r example, warning = FALSE, results = 'hide', out.width = "50%"}
-# Data: Read counts of 1,217 amplicon sequence variants (ASVs) from an
-#   eDNA metabarcoding study
+# Data: a vector of 1,217 ASV read counts, named with assigned taxonomic names
+# and [ID numbers]
 data(mifish)
 head(mifish, n = 10)
 
@@ -49,28 +49,34 @@ asvhist(mifish)
 asvhist(mifish, type = "density", nbins = 30, xlim = c(1, 6))
 
 # Cross-validation analysis for selecting the number of components of Gaussian
-#   mixture model
+# mixture model
 logmf <- log10(mifish)
 set.seed(101)
 cv <- gmmcv(logmf, epsilon = 1e-03)
-autoplot(cv)
+autoplot(cv)  # equivalent to `autoplot.gmmcv(cv)`
 
 # An alternative approach for the number of mixture components: Sequential
-#   parametric bootstrap tests 
+# parametric bootstrap tests 
 set.seed(101)
 # May take some time
 bs <- gmmbs(logmf, B = 100, epsilon = 1e-03)
-p <- autoplot(bs)
+p <- autoplot(bs)  # equivalent to `p <- autoplot.gmmbs(bs)`
 library(cowplot)
 plot_grid(plotlist = p, ncol = 2)
 summary(bs)
 
-# Fit 3-component Gaussian mixture model and display a graphical representation of the output
+# Fit 3-component Gaussian mixture model and display a graphical representation
+# of the output
 set.seed(101)
 mod <- gmmem(logmf, k = 3)
-autoplot(mod)
+autoplot(mod) # equivalent to `autoplot.gmmem(mod)`
 thresh <- quantile(mod, comp = 2)
 autoplot(mod, vline = c(NA, thresh, NA))
+
+# Filter ASVs with the threshold value
+logmf2 <- logmf[which(logmf > thresh)]
+mifish2 <- mifish[which(logmf > thresh)]
+asvhist(mifish2)
 ```
 
 <!--
