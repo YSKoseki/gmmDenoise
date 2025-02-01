@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/YSKoseki/gmmDenoise/workflows/R-CMD-check/badge.svg)](https://github.com/YSKoseki/gmmDenoise/actions)
+[![R-CMD-check](https://github.com/YSKoseki/gmmDenoise/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/YSKoseki/gmmDenoise/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 # Overview
@@ -34,6 +34,9 @@ library(gmmDenoise)
 # and [ID numbers]
 data(mifish)
 head(mifish, n = 10)
+length(mifish)
+summary(mifish)
+
 
 # Plot histogram for visual inspection of ASV read count distribution
 asvhist(mifish)
@@ -48,6 +51,7 @@ asvhist(mifish, type = "density", nbins = 30, xlim = c(1, 6))
 <img src="man/figures/README-example-2.png" width="50%" />
 
 ``` r
+
 # Cross-validation analysis for selecting the number of components of Gaussian
 # mixture model
 logmf <- log10(mifish)
@@ -59,6 +63,7 @@ autoplot(cv)  # equivalent to `autoplot.gmmcv(cv)`
 <img src="man/figures/README-example-3.png" width="50%" />
 
 ``` r
+
 # An alternative approach for the number of mixture components: Sequential
 # parametric bootstrap tests 
 set.seed(101)
@@ -91,6 +96,7 @@ autoplot(mod, vline = c(NA, thresh, NA))
 <img src="man/figures/README-example-6.png" width="50%" />
 
 ``` r
+
 # Filter ASVs with the threshold value
 logmf2 <- logmf[which(logmf > thresh)]
 mifish2 <- mifish[which(logmf > thresh)]
@@ -98,6 +104,11 @@ asvhist(mifish2)
 ```
 
 <img src="man/figures/README-example-7.png" width="50%" />
+
+``` r
+length(mifish2)
+summary(mifish2)
+```
 
 <!--
 You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/v1/examples>.

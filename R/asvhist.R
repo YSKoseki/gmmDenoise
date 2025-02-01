@@ -71,10 +71,10 @@ asvhist <- function(x, scale = "log", type = "freq", nbins = "FD",
       ylab("Density")
   }
   if (scale == "log") {
-    h <- h + xlab("Log10(ASV read count)")
+    h <- h + xlab("log10(read count)")
   }
   if (scale == "normal") {
-    h <- h + xlab("ASV read count")
+    h <- h + xlab("read count")
   }
   return(h)
 }

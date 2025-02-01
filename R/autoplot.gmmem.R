@@ -138,10 +138,10 @@ autoplot.gmmem <- function(object, scale = "log", type = "freq", nbins = "FD",
             legend.text = element_text(size = 14))
   }
   if (scale == "log") {
-    p <- p + xlab("Log10(ASV read count)")
+    p <- p + xlab("log10(read count)")
   }
   if (scale == "normal") {
-    p <- p + xlab("ASV read count")
+    p <- p + xlab("read count")
   }
   return(p)
 }

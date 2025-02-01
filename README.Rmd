@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 # gmmDenoise <img src="man/figures/logo.png" align="right" width="120" />
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/YSKoseki/gmmDenoise/workflows/R-CMD-check/badge.svg)](https://github.com/YSKoseki/gmmDenoise/actions)
+[![R-CMD-check](https://github.com/YSKoseki/gmmDenoise/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/YSKoseki/gmmDenoise/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 # Overview
@@ -43,6 +43,9 @@ library(gmmDenoise)
 # and [ID numbers]
 data(mifish)
 head(mifish, n = 10)
+length(mifish)
+summary(mifish)
+
 
 # Plot histogram for visual inspection of ASV read count distribution
 asvhist(mifish)
@@ -77,6 +80,8 @@ autoplot(mod, vline = c(NA, thresh, NA))
 logmf2 <- logmf[which(logmf > thresh)]
 mifish2 <- mifish[which(logmf > thresh)]
 asvhist(mifish2)
+length(mifish2)
+summary(mifish2)
 ```
 
 <!--
