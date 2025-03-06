@@ -6,7 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/YSKoseki/gmmDenoise/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/YSKoseki/gmmDenoise/actions/workflows/R-CMD-check.yaml)
-![Static Badge](https://img.shields.io/badge/licence-GPL_(%3E=_2)-blue)
+![Static
+Badge](https://img.shields.io/badge/license-GPL_(%3E%3D_2)-blue)
 
 <!-- badges: end -->
 
