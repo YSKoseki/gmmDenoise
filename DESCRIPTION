@@ -10,7 +10,7 @@ Authors@R: person(given = "Yusuke",
 Description: A set of functions for filtering erroneous sequences or amplicon
     sequence variants (ASVs) in eDNA metabarcoding data, based on Gaussian
     mixture modeling (GMM).
-License: MIT + file LICENSE
+License: GPL (>= 2)
 URL: https://github.com/YSKoseki/gmmDenoise
 BugReport: https://github.com/YSKoseki/gmmDenoise/issues
 Depends:
