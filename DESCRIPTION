@@ -1,15 +1,13 @@
 Package: gmmDenoise
 Version: 0.2.4
-Title: A set of functions for filtering erroneous sequences in eDNA
-    metabarcoding data
+Title: A set of functions for erroneous ASV filtering in eDNA
+    metabarcoding data on the basis of GMM
 Authors@R: person(given = "Yusuke",
                   family = "Koseki",
                   role = c("aut", "cre"),
                   email = "ykoseki@otsuma.ac.jp",
                   comment = c(ORCID = "0000-0001-9588-3018"))
-Description: A set of functions for filtering erroneous sequences or amplicon
-    sequence variants (ASVs) in eDNA metabarcoding data, based on Gaussian
-    mixture modeling (GMM).
+Description: A set of functions for erroneous ASV filtering in eDNA metabarcoding data on the basis of GMM.
 License: GPL (>= 2)
 URL: https://github.com/YSKoseki/gmmDenoise
 BugReport: https://github.com/YSKoseki/gmmDenoise/issues

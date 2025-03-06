@@ -12,10 +12,10 @@
 
 # Overview
 
-gmmDenoise is an R package for filtering erroneous amplicon sequence
-variants (ASVs) in eDNA metabarcoding data on the basis of Gaussian
-mixture modeling (GMM) for accurate intraspecific diversity estimates
-and population genetic inferences. The package provides functions for
+gmmDenoise is an R package for erroneous amplicon sequence variant (ASV)
+filtering in eDNA metabarcoding data on the basis of Gaussian mixture
+modeling (GMM) for accurate intraspecific diversity estimates and
+population genetic inferences. The package provides functions for
 selecting the number of components of GMM using cross-validation and
 parametric bootstrap tests, fitting GMM, and filtering ASVs based on the
 fitted GMM. The package also includes functions for visualizing the
