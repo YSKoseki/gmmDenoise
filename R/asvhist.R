@@ -31,7 +31,7 @@ asvhist <- function(x, scale = "log", type = "freq", nbins = "FD",
                     xlim = NULL, ylim = NULL, color = "black", fill = "grey") {
   if (!is.vector(x) || any(x <= 0))
     stop("use only with a vector of count data (all positive integers)")
-  count <- ..density.. <- NULL
+  count <- density <- NULL
   if (scale == "log") {
     x <- log10(x)
   }
@@ -65,7 +65,7 @@ asvhist <- function(x, scale = "log", type = "freq", nbins = "FD",
   }
   if (type == "density") {
     h <- h +
-      geom_histogram(aes(y = ..density..),
+      geom_histogram(aes(y = after_stat(density)),
                      bins = nb, breaks = brk, color = color, fill = fill) +
       scale_y_continuous(limits = ylim, expand = c(0, 0)) +
       ylab("Density")
