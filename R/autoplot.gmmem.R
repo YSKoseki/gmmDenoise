@@ -52,7 +52,7 @@ autoplot.gmmem <- function(object, scale = "log", type = "freq", nbins = "FD",
                            dist.alpha = NULL, vline.color = NULL, ...) {
   if (!inherits(object, "gmmem"))
     stop("The object needs to be a \'gmmem\'-class")
-  x <- density <- comp <- ..count.. <- ..density.. <- NULL
+  x <- density <- comp <- count <- density <- NULL
   # Set bin number or bin break points
   raw.x <- object$x
   if (is.null(nbins) || is.numeric(nbins)) {
@@ -93,7 +93,7 @@ autoplot.gmmem <- function(object, scale = "log", type = "freq", nbins = "FD",
     n <- length(raw.x)
     p <- ggplot() +
       geom_histogram(data = hist.df,
-                     mapping = aes(x = raw.x, y = ..count..),
+                     mapping = aes(x = raw.x, y = after_stat(count)),
                      bins = nb, breaks = brk,
                      color = hist.color, fill = hist.fill) +
       geom_line(data = density.df,
@@ -120,7 +120,7 @@ autoplot.gmmem <- function(object, scale = "log", type = "freq", nbins = "FD",
     density.df <- predict.gmmem(object, newdata = new.x)
     p <- ggplot() +
       geom_histogram(data = hist.df,
-                     mapping = aes(x = raw.x, y = ..density..),
+                     mapping = aes(x = raw.x, y = after_stat(density)),
                      bins = nb, breaks = brk,
                      color = hist.color, fill = hist.fill) +
       geom_line(data = density.df, mapping = aes(x = x, y = density, color = comp),
