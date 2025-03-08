@@ -21,8 +21,8 @@
 #' set.seed(101)
 #' mod <- gmmem(logmf, k = 3)
 #' autoplot(mod)
-#' thresh <- quantile(mod, comp = 2)
-#' autoplot(mod, vline = c(NA, thresh, NA))
+#' thresh <- quantile(mod)
+#' autoplot(mod, vline = thresh)
 #' @export quantile.gmmem
 #' @export
 quantile.gmmem <- function(x, comp = 2, probs = .95, lower.tail = TRUE, ...) {

@@ -34,8 +34,8 @@ densities are plotted.}
 \item{nbins}{Either a single number giving the number of bins or a character
 string naming an algorithm to compute the number of bins (see ‘Details’).}
 
-\item{vline}{A numeric vector giving the quantiles of the mixture components.
-Use to draw threshold(s) of the data. See the example.}
+\item{vline}{A single number specifying the read count cutoff threshold to
+be drawn. See the example.}
 
 \item{xlim, ylim}{The ranges of x and y axes. Use to override the plot
 defaults.}
@@ -47,7 +47,7 @@ Use to override the defaults.}
 opacity parameters for probability density functions. Use to override the
 defaults.}
 
-\item{vline.color}{The color for vertical lines.}
+\item{vline.color}{A color for the vertical line.}
 
 \item{...}{Unused.}
 }
@@ -72,8 +72,8 @@ logmf <- log10(mifish)
 set.seed(101)
 mod <- gmmem(logmf, k = 3)
 autoplot(mod)
-thresh <- quantile(mod, comp = 2)
-autoplot(mod, vline = c(NA, thresh, NA))
+thresh <- quantile(mod)
+autoplot(mod, vline = thresh)
 }
 \seealso{
 \code{\link[=gmmem]{gmmem()}}, \code{\link[=predict.gmmem]{predict.gmmem()}}, \code{\link[=quantile.gmmem]{quantile.gmmem()}}

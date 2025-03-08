@@ -40,8 +40,8 @@
 #' set.seed(101)
 #' mod <- gmmem(logmf, k = 3)
 #' autoplot(mod)
-#' thresh <- quantile(mod, comp = 2)
-#' autoplot(mod, vline = c(NA, thresh, NA))
+#' thresh <- quantile(mod)
+#' autoplot(mod, vline = thresh)
 #' @export autoplot.gmmem
 #' @export
 autoplot.gmmem <- function(object, scale = "log", type = "freq", nbins = "FD",

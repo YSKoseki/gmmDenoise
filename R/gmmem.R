@@ -47,8 +47,8 @@
 #' set.seed(101)
 #' mod <- gmmem(logmf, k = 3)
 #' autoplot(mod)
-#' thresh <- quantile(mod, comp = 2)
-#' autoplot(mod, vline = c(NA, thresh, NA))
+#' thresh <- quantile(mod)
+#' autoplot(mod, vline = thresh)
 #' @export
 gmmem <- function(x, k = 2, lambda = NULL, mu = NULL, sigma = NULL,
                   maxit = 1000, maxrestarts=20, epsilon = 1e-8, ...) {
