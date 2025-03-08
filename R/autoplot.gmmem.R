@@ -52,7 +52,7 @@ autoplot.gmmem <- function(object, scale = "log", type = "freq", nbins = "FD",
                            dist.alpha = NULL, vline.color = NULL, ...) {
   if (!inherits(object, "gmmem"))
     stop("The object needs to be a \'gmmem\'-class")
-  x <- density <- comp <- count <- density <- NULL
+  x <- count <- density <- comp <- NULL
   # Set bin number or bin break points
   raw.x <- object$x
   if (is.null(nbins) || is.numeric(nbins)) {
@@ -79,8 +79,8 @@ autoplot.gmmem <- function(object, scale = "log", type = "freq", nbins = "FD",
     if (k == 1) wes <- wes_palette("Darjeeling1", k + 1, type = "continuous")[2]
     if (k > 1) wes <- wes_palette("Darjeeling1", k, type = "continuous")
   }
-  if (is.null(dist.color)) dist.color <- wes[1:k]
-  if (is.null(dist.fill)) dist.fill <- wes[1:k]
+  if (is.null(dist.color)) dist.color <- wes
+  if (is.null(dist.fill)) dist.fill <- wes
   if (is.null(dist.alpha)) dist.alpha <- .3
   if (is.null(vline.color)) vline.color <- wes[1:length(vline)]
   hist.df <- data.frame(raw.x = raw.x)
@@ -99,11 +99,13 @@ autoplot.gmmem <- function(object, scale = "log", type = "freq", nbins = "FD",
       geom_line(data = density.df,
                 mapping = aes(x = x, y = density * n * bw, color = comp),
                 size = 1.1) +
-      scale_color_manual(values = dist.color) +
+      scale_color_manual(values = dist.color,
+                         guide = guide_legend(reverse = TRUE)) +
       geom_area(data = density.df,
                 mapping = aes(x = x, y = density * n * bw, fill = comp),
                 position = position_identity(), alpha = dist.alpha) +
-      scale_fill_manual(values = dist.fill) +
+      scale_fill_manual(values = dist.fill,
+                        guide = guide_legend(reverse = TRUE)) +
       geom_vline(xintercept = vline, color = vline.color, size = .8) +
       scale_x_continuous(limits = xlim, breaks = pretty_breaks()) +
       scale_y_continuous(limits = ylim, expand = c(0, 0),
@@ -125,10 +127,12 @@ autoplot.gmmem <- function(object, scale = "log", type = "freq", nbins = "FD",
                      color = hist.color, fill = hist.fill) +
       geom_line(data = density.df, mapping = aes(x = x, y = density, color = comp),
                 size = 1.1) +
-      scale_color_manual(values = dist.color) +
+      scale_color_manual(values = dist.color,
+                         guide = guide_legend(reverse = TRUE)) +
       geom_area(data = density.df, mapping = aes(x = x, y = density, fill = comp),
                 position = position_identity(), alpha = dist.alpha) +
-      scale_fill_manual(values = dist.fill) +
+      scale_fill_manual(values = dist.fill,
+                        guide = guide_legend(reverse = TRUE)) +
       geom_vline(xintercept = vline, color = vline.color, size = .8) +
       scale_x_continuous(limits = xlim, breaks = pretty_breaks()) +
       scale_y_continuous(limits = ylim, expand = c(0, 0)) +

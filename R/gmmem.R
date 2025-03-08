@@ -73,7 +73,7 @@ gmmem <- function(x, k = 2, lambda = NULL, mu = NULL, sigma = NULL,
     gmm$sigma <- gmm$sigma[comp.ord]
     gmm$lambda <- gmm$lambda[comp.ord]
     gmm$posterior <- gmm$posterior[, comp.ord]
-    colnames(gmm$posterior) <- colnames(gmm$posterior)[comp.ord]
+    colnames(gmm$posterior) <- colnames(gmm$posterior)[rev(comp.ord)]
   }
   class(gmm) <- c("gmmem")
   return(gmm)

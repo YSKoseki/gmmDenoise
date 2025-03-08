@@ -4,11 +4,11 @@
 \name{gmmDenoise-package}
 \alias{gmmDenoise}
 \alias{gmmDenoise-package}
-\title{gmmDenoise: A set of functions for filtering erroneous sequences in eDNA metabarcoding data}
+\title{gmmDenoise: A set of functions for erroneous ASV filtering in eDNA metabarcoding data on the basis of GMM}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-A set of functions for filtering erroneous sequences or amplicon sequence variants (ASVs) in eDNA metabarcoding data, based on Gaussian mixture modeling (GMM).
+A set of functions for erroneous ASV filtering in eDNA metabarcoding data on the basis of GMM.
 }
 \seealso{
 Useful links:

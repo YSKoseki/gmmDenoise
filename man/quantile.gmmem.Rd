@@ -9,7 +9,8 @@
 \arguments{
 \item{x}{A list object of class \code{gmmem}.}
 
-\item{comp}{A single number specifying the component number.}
+\item{comp}{A single number specifying the component number. Note that the
+component number is in ascending order from the uppermost component.}
 
 \item{probs}{A vector of probabilities. Elements must be [0 ≤ probs ≤ 1].}
 
