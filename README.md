@@ -53,7 +53,7 @@ asvhist(mifish)
 <img src="man/figures/README-example-1.png" width="50%" />
 
 ``` r
-asvhist(mifish, type = "density", nbins = 30, xlim = c(1, 6))
+asvhist(mifish, type = "density", nbins = 30) # See `help(asvhist)` for more details about the options
 ```
 
 <img src="man/figures/README-example-2.png" width="50%" />
@@ -97,8 +97,8 @@ autoplot(mod) # equivalent to `autoplot.gmmem(mod)`
 <img src="man/figures/README-example-5.png" width="50%" />
 
 ``` r
-thresh <- quantile(mod, comp = 2)
-autoplot(mod, vline = c(NA, thresh, NA))
+thresh <- quantile(mod) # equivalent to `autoplot.gmmem(mod, comp = 2, probs = 0.95)`
+autoplot(mod, vline = thresh)
 ```
 
 <img src="man/figures/README-example-6.png" width="50%" />

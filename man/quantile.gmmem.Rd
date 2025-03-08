@@ -4,12 +4,13 @@
 \alias{quantile.gmmem}
 \title{Calculate quantiles of a mixture component}
 \usage{
-\method{quantile}{gmmem}(x, comp, probs = 0.95, lower.tail = TRUE, ...)
+\method{quantile}{gmmem}(x, comp = 2, probs = 0.95, lower.tail = TRUE, ...)
 }
 \arguments{
 \item{x}{A list object of class \code{gmmem}.}
 
-\item{comp}{A single number specifying the component number.}
+\item{comp}{A single number specifying the component number. Note that the
+component number is in ascending order from the uppermost component.}
 
 \item{probs}{A vector of probabilities. Elements must be [0 ≤ probs ≤ 1].}
 
@@ -22,10 +23,10 @@ P[X ≤ x] otherwise, P[X > x].}
 A vector of quantiles.
 }
 \description{
-\code{quantile.gmmem()} calculates quantiles of a mixture component of the fitted
-Gaussian mixture model. The quantiles calculated can be referred to as
-read count cutoff thresholds for denoising amplicon sequence variants
-(ASVs) inferred from metabarcoding analysis.
+\code{quantile.gmmem()} calculates a quantile (default, the 95\%) of a mixture component (the second uppermost) of the fitted
+Gaussian mixture model. The quantile calculated can be referred to as
+the read count cutoff threshold for amplicon sequence variant (ASV)
+filtering.
 }
 \examples{
 data(mifish)
@@ -33,8 +34,8 @@ logmf <- log10(mifish)
 set.seed(101)
 mod <- gmmem(logmf, k = 3)
 autoplot(mod)
-thresh <- quantile(mod, comp = 2)
-autoplot(mod, vline = c(NA, thresh, NA))
+thresh <- quantile(mod)
+autoplot(mod, vline = thresh)
 }
 \seealso{
 \link{gmmem}

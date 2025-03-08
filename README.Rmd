@@ -51,7 +51,7 @@ summary(mifish)
 
 # Plot histogram for visual inspection of ASV read count distribution
 asvhist(mifish)
-asvhist(mifish, type = "density", nbins = 30, xlim = c(1, 6))
+asvhist(mifish, type = "density", nbins = 30) # See `help(asvhist)` for more details about the options
 
 # Cross-validation for selecting the number of components of Gaussian
 # mixture model
@@ -75,8 +75,8 @@ summary(bs)
 set.seed(101)
 mod <- gmmem(logmf, k = 3)
 autoplot(mod) # equivalent to `autoplot.gmmem(mod)`
-thresh <- quantile(mod, comp = 2)
-autoplot(mod, vline = c(NA, thresh, NA))
+thresh <- quantile(mod) # equivalent to `autoplot.gmmem(mod, comp = 2, probs = 0.95)`
+autoplot(mod, vline = thresh)
 
 # Filter ASVs with the threshold value
 logmf2 <- logmf[which(logmf > thresh)]

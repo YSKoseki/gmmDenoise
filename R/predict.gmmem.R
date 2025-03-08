@@ -31,17 +31,21 @@
 predict.gmmem <- function(object, newdata = NULL, ...) {
   if (!inherits(object, "gmmem"))
     stop("use only with \'gmmem\' objects")
-  . <- x <- NULL
+  . <- x <- lev <- revlev <- NULL
   if (is.null(newdata)) {
     newdata <- object$x
   }
   df <- 1:length(object$lambda) %>%
     sapply(function(k) dgauss(object = object, newdata = newdata, k)) %>%
     bind_cols() %>%
-    rename_with(~ str_replace(., "...", "Comp")) %>%
+    rename_with(~ str_replace(., "...", "Comp ")) %>%
     bind_cols(x = newdata, .) %>%
     pivot_longer(cols = -x, names_to = "comp", values_to = "density") %>%
     suppressMessages()
+  lev <- df$comp %>%
+    unique()
+  revlev <- rev(lev)
+  df$comp <- factor(df$comp, levels = lev, labels = revlev)
   class(df) <- c("data.frame")
   return(df)
 }
