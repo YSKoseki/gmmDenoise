@@ -17,8 +17,8 @@
 #'     densities are plotted.
 #' @param nbins Either a single number giving the number of bins or a character
 #'     string naming an algorithm to compute the number of bins (see ‘Details’).
-#' @param vline A numeric vector giving the quantiles of the mixture components.
-#'     Use to draw threshold(s) of the data. See the example.
+#' @param vline A single number specifying the read count cutoff threshold to
+#'     be drawn. See the example.
 #' @param xlim,ylim The ranges of x and y axes. Use to override the plot
 #'     defaults.
 #' @param hist.color,hist.fill Colors to be used to border and fill the bins.
@@ -26,7 +26,7 @@
 #' @param dist.color,dist.fill,dist.alpha The color (color and fill) and
 #'     opacity parameters for probability density functions. Use to override the
 #'     defaults.
-#' @param vline.color The color for vertical lines.
+#' @param vline.color A color for the vertical line.
 #' @param ... Unused.
 #' @details The default for `nbins` is `"FD"`, which stands for
 #'     `"Freedman-Diaconis"`; see [grDevices::nclass.FD()]. Other options are
@@ -82,7 +82,10 @@ autoplot.gmmem <- function(object, scale = "log", type = "freq", nbins = "FD",
   if (is.null(dist.color)) dist.color <- wes
   if (is.null(dist.fill)) dist.fill <- wes
   if (is.null(dist.alpha)) dist.alpha <- .3
-  if (is.null(vline.color)) vline.color <- wes[1:length(vline)]
+  if (is.null(vline.color)) vline.color <- rep(wes[k-2+1], k)
+    else vline.color <- rep(vline.color, k)
+  if (!is.null(vline)) vctvl <- rep(vline, k)
+    else vctvl <- NULL
   hist.df <- data.frame(raw.x = raw.x)
   # Count plot
   if (type == "freq") {
@@ -106,7 +109,7 @@ autoplot.gmmem <- function(object, scale = "log", type = "freq", nbins = "FD",
                 position = position_identity(), alpha = dist.alpha) +
       scale_fill_manual(values = dist.fill,
                         guide = guide_legend(reverse = TRUE)) +
-      geom_vline(xintercept = vline, color = vline.color, size = .8) +
+      geom_vline(xintercept = vctvl, color = vline.color, size = .8) +
       scale_x_continuous(limits = xlim, breaks = pretty_breaks()) +
       scale_y_continuous(limits = ylim, expand = c(0, 0),
                          breaks = pretty_breaks()) +
@@ -133,7 +136,7 @@ autoplot.gmmem <- function(object, scale = "log", type = "freq", nbins = "FD",
                 position = position_identity(), alpha = dist.alpha) +
       scale_fill_manual(values = dist.fill,
                         guide = guide_legend(reverse = TRUE)) +
-      geom_vline(xintercept = vline, color = vline.color, size = .8) +
+      geom_vline(xintercept = vctvl, color = vline.color, size = .8) +
       scale_x_continuous(limits = xlim, breaks = pretty_breaks()) +
       scale_y_continuous(limits = ylim, expand = c(0, 0)) +
       ylab("Density") +
