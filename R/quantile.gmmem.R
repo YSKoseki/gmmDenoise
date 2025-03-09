@@ -1,14 +1,14 @@
 #' Calculate quantiles of a mixture component
 #'
-#' `quantile.gmmem()` calculates a quantile (default, the 95%) of a mixture component (the second uppermost) of the fitted
-#'     Gaussian mixture model. The quantile calculated can be referred to as
-#'     the read count cutoff threshold for amplicon sequence variant (ASV)
-#'     filtering.
+#' `quantile.gmmem()` calculates quantiles of mixture components (default is
+#'     the upper 95% of the second uppermost component) of the fitted Gaussian
+#'     mixture model. The quantile calculated can be referred to as the read
+#'     count cutoff threshold for amplicon sequence variant (ASV) filtering.
 #'
 #' @importFrom stats quantile qnorm
 #' @param x A list object of class `gmmem`.
-#' @param comp A single number specifying the component number. Note that the
-#'     component number is in ascending order from the uppermost component.
+#' @param comp A numeric vector specifying the component numbers. Note that the
+#'     component numbers are in ascending order from the uppermost component.
 #' @param probs A vector of probabilities. Elements must be \[0 ≤ probs ≤ 1\].
 #' @param lower.tail logical; if `TRUE` (default), probabilities are
 #'     P\[X ≤ x\] otherwise, P\[X > x\].

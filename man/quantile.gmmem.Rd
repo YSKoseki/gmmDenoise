@@ -9,8 +9,8 @@
 \arguments{
 \item{x}{A list object of class \code{gmmem}.}
 
-\item{comp}{A single number specifying the component number. Note that the
-component number is in ascending order from the uppermost component.}
+\item{comp}{A numeric vector specifying the component numbers. Note that the
+component numbers are in ascending order from the uppermost component.}
 
 \item{probs}{A vector of probabilities. Elements must be [0 ≤ probs ≤ 1].}
 
@@ -23,10 +23,10 @@ P[X ≤ x] otherwise, P[X > x].}
 A vector of quantiles.
 }
 \description{
-\code{quantile.gmmem()} calculates a quantile (default, the 95\%) of a mixture component (the second uppermost) of the fitted
-Gaussian mixture model. The quantile calculated can be referred to as
-the read count cutoff threshold for amplicon sequence variant (ASV)
-filtering.
+\code{quantile.gmmem()} calculates quantiles of mixture components (default is
+the upper 95\% of the second uppermost component) of the fitted Gaussian
+mixture model. The quantile calculated can be referred to as the read
+count cutoff threshold for amplicon sequence variant (ASV) filtering.
 }
 \examples{
 data(mifish)
