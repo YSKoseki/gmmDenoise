@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-# Overview
+## Overview
 
 gmmDenoise is an R package for erroneous amplicon sequence variant (ASV) filtering in eDNA metabarcoding data on the basis of Gaussian mixture modeling (GMM) for accurate intraspecific diversity estimates and population genetic inferences. The package provides functions for selecting the number of components of GMM using cross-validation and parametric bootstrap tests, fitting GMM, and filtering ASVs based on the fitted GMM. The package also includes functions for visualizing the results of the GMM fitting and filtering processes.
 
@@ -32,7 +32,7 @@ gmmDenoise is an R package for erroneous amplicon sequence variant (ASV) filteri
 devtools::install_github("YSKoseki/gmmDenoise")
 ```
 
-## Example
+## Example workflow
 
 This is an example of how gmmDenoise works for filtering erroneous ASVs.
 
@@ -51,39 +51,46 @@ summary(mifish)
 
 # Plot histogram for visual inspection of ASV read count distribution
 asvhist(mifish)
-asvhist(mifish, type = "density", nbins = 30) # See `help(asvhist)` for more details about the options
+
+# The density version with the number of bins arbitrary set at 30
+asvhist(mifish, type = "density", nbins = 30)
+
+# Log-transformed data
+logmf <- log10(mifish)
 
 # Cross-validation for selecting the number of components of Gaussian
 # mixture model
-logmf <- log10(mifish)
 set.seed(101)
-cv <- gmmcv(logmf, epsilon = 1e-03)
+cv <- gmmcv(logmf, epsilon = 1e-02)
 autoplot(cv)  # equivalent to `autoplot.gmmcv(cv)`
 
-# An alternative approach for the number of mixture components: Sequential
+# The alternative approach for the number of mixture components: Sequential
 # parametric bootstrap tests 
 set.seed(101)
-# May take some time
-bs <- gmmbs(logmf, B = 100, epsilon = 1e-03)
+# May take some time (8 sec on my M1 MacBook Pro)
+bs <- gmmbs(logmf, B = 100, epsilon = 1e-02)
+summary(bs)
 p <- autoplot(bs)  # equivalent to `p <- autoplot.gmmbs(bs)`
 library(cowplot)
 plot_grid(plotlist = p, ncol = 2)
-summary(bs)
 
 # Fit a 3-component Gaussian mixture model and display a graphical representation
-# of the output
+# of the fitted model
 set.seed(101)
 mod <- gmmem(logmf, k = 3)
 autoplot(mod) # equivalent to `autoplot.gmmem(mod)`
-thresh <- quantile(mod) # equivalent to `autoplot.gmmem(mod, comp = 2, probs = 0.95)`
+
+# Determine the cutoff threshold (default is the upper one-sided 95% confidence 
+# limit of the second uppermost component) 
+thresh <- quantile(mod)
 autoplot(mod, vline = thresh)
 
 # Filter ASVs with the threshold value
 logmf2 <- logmf[which(logmf > thresh)]
 mifish2 <- mifish[which(logmf > thresh)]
-asvhist(mifish2)
 length(mifish2)
 summary(mifish2)
+asvhist(mifish2)
 ```
 
 <!--
