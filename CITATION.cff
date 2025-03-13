@@ -1,10 +1,41 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 authors:
+<<<<<<< Updated upstream
 - given-names: "Yusuke"
   family-names: "Koseki"
   orcid: "https://orcid.org/0000-0001-9588-3018"
 title: "gmmDenoise"
+=======
+  - given-names: Yusuke
+    family-names: Koseki
+    orcid: 'https://orcid.org/0000-0001-9588-3018'
+<<<<<<< HEAD
+    website: https://www.ykoseki.net/
+=======
+    website: 'https://www.ykoseki.net/'
+>>>>>>> 386dc93 (Update CITATION.cff)
+url: 'https://github.com/YSKoseki/gmmDenoise'
+abstract: >-
+  gmmDenoise is an R package for erroneous amplicon sequence
+  variant (ASV) filtering in eDNA metabarcoding data on the
+  basis of Gaussian mixture modeling (GMM) for accurate
+  intraspecific diversity estimates and population genetic
+  inferences. The package provides functions for selecting
+  the number of components of GMM using cross-validation and
+  parametric bootstrap tests, fitting GMM, and filtering
+  ASVs based on the fitted GMM. The package also includes
+  functions for visualizing the results of the GMM fitting
+  and filtering processes.
+keywords:
+  - bioinformatics
+  - haplotypes
+  - eDNA
+  - metabarcoding
+  - denoising
+  - ASVs
+license: GPL-2.0-or-later
+>>>>>>> Stashed changes
 version: 0.3.1
 doi: 10.5281/zenodo.15015858
 date-released: 2025-03-13
