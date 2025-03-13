@@ -8,7 +8,7 @@ authors:
   - given-names: Yusuke
     family-names: Koseki
     orcid: 'https://orcid.org/0000-0001-9588-3018'
-    website: https://www.ykoseki.net/
+    website: 'https://www.ykoseki.net/'
 url: 'https://github.com/YSKoseki/gmmDenoise'
 abstract: >-
   gmmDenoise is an R package for erroneous amplicon sequence
