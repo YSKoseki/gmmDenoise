@@ -8,7 +8,7 @@
 [![R-CMD-check](https://github.com/YSKoseki/gmmDenoise/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/YSKoseki/gmmDenoise/actions/workflows/R-CMD-check.yaml)
 ![Static
 Badge](https://img.shields.io/badge/license-GPL_(%3E%3D_2)-blue)
-
+[![DOI](https://zenodo.org/badge/489551728.svg)](https://zenodo.org/badge/latestdoi/489551728)
 <!-- badges: end -->
 
 ## Overview
@@ -121,6 +121,16 @@ asvhist(mifish2)
 ```
 
 <img src="man/figures/README-example-7.png" width="50%" />
+
+## Cite as
+
+[![DOI](https://zenodo.org/badge/489551728.svg)](https://zenodo.org/badge/latestdoi/489551728)
+
+The above DOI corresponds to the latest versioned release as [published
+to Zenodo](https://zenodo.org/records/15015857), where you will find all
+earlier releases. To cite gmmDenoise independent of version, use
+<https://doi.org/10.5281/zenodo.15015857>, which will always redirect to
+the latest release.
 
 <!--
 You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/v1/examples>.
