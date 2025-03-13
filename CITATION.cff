@@ -1,0 +1,9 @@
+gmmDenoise: 0.3.1
+message: "Cite as"
+authors:
+  - family-names: Koseki
+    given-names: Yusuke
+    orcid: https://orcid.org/0000-0001-9588-3018
+    website: https://www.ykoseki.net/
+title: "gmmDenoise"
+doi: 10.5281/zenodo.15015858
