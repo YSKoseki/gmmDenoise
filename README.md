@@ -118,10 +118,7 @@ logmf2 <- logmf[which(logmf > thresh)]
 mifish2 <- mifish[which(logmf > thresh)]
 length(mifish2)
 summary(mifish2)
-asvhist(mifish2)
 ```
-
-<img src="man/figures/README-example-7.png" width="50%" />
 
 ## Cite as
 
