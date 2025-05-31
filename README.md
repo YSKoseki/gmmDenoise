@@ -136,11 +136,12 @@ combined dataset, in which all runs have been merged.
 > DNAseq”](https://github.com/broadinstitute/gatk-docs/blob/master/gatk3-methods-and-algorithms/Best_Practices_for_Variant_Discovery_in_DNAseq.md#best-practices-for-variant-discovery-in-dnaseq)
 > by Geraldine_VdAuwera.
 
-As illustrated in the workflow above, `gmmDenoise` can work
-complementarily with existing denoising algorithms, such as `DADA2`
-(Callahan et al. 2016) and `UNOISE3` (Edgar 2016). Our analyses (Koseki
-et al., submitted) indicate that this complementary use enhance
-denoising performance, resulting in fewer false-positive ASVs.
+As illustrated in the workflow above (the “Denoising & Chimera Removal”
+step), `gmmDenoise` can work complementarily with existing denoising
+algorithms, such as `DADA2` (Callahan et al. 2016) and `UNOISE3` (Edgar
+2016). Our analyses (Koseki et al., submitted) indicate that this
+complementary use enhance denoising performance, resulting in fewer
+false-positive ASVs.
 
 References: - Callahan, B. J., McMurdie, P. J., Rosen, M. J., Han, A.
 W., Johnson, A. J. A., & Holmes, S. P. (2016). *DADA2*: High-resolution
