@@ -143,15 +143,18 @@ algorithms, such as `DADA2` (Callahan et al. 2016) and `UNOISE3` (Edgar
 complementary use enhance denoising performance, resulting in fewer
 false-positive ASVs.
 
-References: - Callahan, B. J., McMurdie, P. J., Rosen, M. J., Han, A.
-W., Johnson, A. J. A., & Holmes, S. P. (2016). *DADA2*: High-resolution
-sample inference from Illumina amplicon data. Nature Methods, 13(7),
-581—583. - Edgar, R. C. (2016). *UNOISE2*: Improved error-correction for
-Illumina 16S and ITS amplicon sequencing. bioRxiv, 081257. - Koseki, Y.,
-Takeshima, H., Yoneda, R., Katayanagi, K., Ito, G., & Yamanaka, H.
-(2025). *gmmDenoise*: a new method and *R* package for high-confidence
-sequence variant filtering in environmental DNA amplicon analysis.
-Authorea.
+References:
+
+- Callahan, B. J., McMurdie, P. J., Rosen, M. J., Han, A. W.,
+  Johnson, A. J. A., & Holmes, S. P. (2016). *DADA2*: High-resolution
+  sample inference from Illumina amplicon data. Nature Methods, 13(7),
+  581—583.
+- Edgar, R. C. (2016). *UNOISE2*: Improved error-correction for Illumina
+  16S and ITS amplicon sequencing. bioRxiv, 081257.
+- Koseki, Y., Takeshima, H., Yoneda, R., Katayanagi, K., Ito, G., &
+  Yamanaka, H. (2025). *gmmDenoise*: a new method and *R* package for
+  high-confidence sequence variant filtering in environmental DNA
+  amplicon analysis. Authorea.
 
 ## Cite as
 

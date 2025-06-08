@@ -101,6 +101,7 @@ This is our recommended workflow for processing eDNA metabarcoding data for gene
 As illustrated in the workflow above (the "Denoising & Chimera Removal" step), `gmmDenoise` can work complementarily with existing denoising algorithms, such as `DADA2` (Callahan et al. 2016) and `UNOISE3` (Edgar 2016). Our analyses (Koseki et al., submitted) indicate that this complementary use enhance denoising performance, resulting in fewer false-positive ASVs.
 
 References:
+
 - Callahan, B. J., McMurdie, P. J., Rosen, M. J., Han, A. W., Johnson, A. J. A., & Holmes, S. P. (2016). _DADA2_: High-resolution sample inference from Illumina amplicon data. Nature Methods, 13(7), 581—583.
 - Edgar, R. C. (2016). _UNOISE2_: Improved error-correction for Illumina 16S and ITS amplicon sequencing. bioRxiv, 081257.
 - Koseki, Y., Takeshima, H., Yoneda, R., Katayanagi, K., Ito, G., & Yamanaka, H. (2025). _gmmDenoise_: a new method and _R_ package for high-confidence sequence variant filtering in environmental DNA amplicon analysis. Authorea. 
