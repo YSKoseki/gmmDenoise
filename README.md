@@ -32,84 +32,110 @@ devtools::install_github("YSKoseki/gmmDenoise")
 
 ## Example workflow
 
-This is an example of how `gmmDenoise` works for filtering erroneous
-ASVs.
+### Step 1. Load the package
 
 ``` r
 library(gmmDenoise)
 ```
 
+### Step 2. Load and inspect the example dataset
+
 ``` r
-# Data: a vector of 1,217 ASV read counts, named with assigned taxonomic names
-# and [ID numbers]
+# mifish dataset: a vector of 1,217 ASV read counts, labeled with assigned  
+# taxonomic names and ID numbers
 data(mifish)
 head(mifish, n = 10)
 length(mifish)
 summary(mifish)
 
-# Plot histogram for visual inspection of ASV read count distribution
+# Plot a frequency histogram for visual inspection of ASV read count distribution
 asvhist(mifish)
 ```
 
-<img src="man/figures/README-example-1.png" width="50%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="50%" />
 
 ``` r
 
-# The density version with the number of bins arbitrary set at 30
+# A density histogram, rather than a frequency histogram, with the number of bins
+# arbitrary set to 30, for example
 asvhist(mifish, type = "density", nbins = 30)
 ```
 
-<img src="man/figures/README-example-2.png" width="50%" />
+<img src="man/figures/README-unnamed-chunk-4-2.png" width="50%" />
+
+### Step 3. Log-transform the read counts
 
 ``` r
-
-# Log-transformed data
+# Log-transformation to normalize the data and stabilize variance
 logmf <- log10(mifish)
+```
 
-# Cross-validation for selecting the number of components of Gaussian
-# mixture model
+### Step 4. Select the number of components of Gaussian mixture model, *k*
+
+#### Option 1: Split-half cross-validation
+
+``` r
+# Set a random seed for reproducibility
 set.seed(101)
-cv <- gmmcv(logmf, epsilon = 1e-02)
+
+# Perform the cross-validation
+cv <- gmmcv(logmf, epsilon = 1e-02) # see ?gmmcv for details
+
+# Display the cross-validation result, i.e., fitted log-likelihood value and 
+# its confidence interval against k
 autoplot(cv)  # equivalent to `autoplot.gmmcv(cv)`
 ```
 
-<img src="man/figures/README-example-3.png" width="50%" />
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="50%" />
+
+#### Option2: Sequential parametric bootstrap tests
 
 ``` r
-
-# The alternative approach for the number of mixture components: Sequential
-# parametric bootstrap tests 
 set.seed(101)
-# May take some time (8 sec on my M1 MacBook Pro)
-bs <- gmmbs(logmf, B = 100, epsilon = 1e-02)
+
+# Perform the bootstrap tests; it may take time (8 sec on an M1 MacBook Pro)
+bs <- gmmbs(logmf, B = 100, epsilon = 1e-02) # see ?gmmbs for details
 summary(bs)
+
+# Display the bootstrap test result, i.e., a series of histograms of bootstrap 
+# likelihood ratio statistic for each test step (comparing k vs. k+1)
 p <- autoplot(bs)  # equivalent to `p <- autoplot.gmmbs(bs)`
 library(cowplot)
-plot_grid(plotlist = p, ncol = 2)
+cowplot::plot_grid(plotlist = p, ncol = 2)
 ```
 
-<img src="man/figures/README-example-4.png" width="50%" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="50%" />
+
+Both analyses above suggest that the most likely number of mixture
+components, *k*, is 3.
+
+### Step 5. Fit a GMM with the selected number of components
 
 ``` r
-
-# Fit a 3-component Gaussian mixture model and display a graphical representation
-# of the fitted model
 set.seed(101)
+
+# Fit a GMM with k = 3
 mod <- gmmem(logmf, k = 3)
+
+# Display the fitted GMM
 autoplot(mod) # equivalent to `autoplot.gmmem(mod)`
 ```
 
-<img src="man/figures/README-example-5.png" width="50%" />
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="50%" />
+
+### Step 6. Determine a filtering threshold and perform ASV filtering
 
 ``` r
+# quantile.gmmem() returns, by default, the upper one-sided 95% confidence limit 
+# of the second uppermost component as the statistically validated abundance
+# threshold value
+thresh <- quantile(mod) # equivalent to `thresh <- quantile.gmmem(mod)`
 
-# Determine the cutoff threshold (default is the upper one-sided 95% confidence 
-# limit of the second uppermost component) 
-thresh <- quantile(mod)
+# The fitted GMM with the threshold value
 autoplot(mod, vline = thresh)
 ```
 
-<img src="man/figures/README-example-6.png" width="50%" />
+<img src="man/figures/README-unnamed-chunk-9-1.png" width="50%" />
 
 ``` r
 
