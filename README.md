@@ -187,7 +187,8 @@ References:
 - Koseki, Y., Takeshima, H., Yoneda, R., Katayanagi, K., Ito, G., &
   Yamanaka, H. (2025). *gmmDenoise*: a new method and *R* package for
   high-confidence sequence variant filtering in environmental DNA
-  amplicon analysis. Authorea.
+  amplicon analysis. Molecular Ecology Resources. Advance online
+  publication. <https://doi.org/10.1111/1755-0998.70023>.
 
 ## Cite as
 
@@ -201,7 +202,8 @@ To cite `gmmDenoise` in publications, please use:
 Koseki, Y., Takeshima, H., Yoneda, R., Katayanagi, K., Ito, G., &
 Yamanaka, H. (2025). *gmmDenoise*: a new method and *R* package for
 high-confidence sequence variant filtering in environmental DNA amplicon
-analysis. Authorea.
+analysis. Molecular Ecology Resources. Advance online publication.
+<https://doi.org/10.1111/1755-0998.70023>.
 
 A BibTeX entry for LateX users is [here](inst/CITATION).
 

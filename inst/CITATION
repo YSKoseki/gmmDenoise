@@ -1,7 +1,7 @@
 bibentry(
   bibtype = "Article",
   header = "To cite 'gmmDenoise' in publications, please use",
-  textVersion = "Koseki, Y., Takeshima, H., Yoneda, R., Katayanagi, K., Ito, G., & Yamanaka, H. (2025). gmmDenoise: a new method and R package for high-confidence sequence variant filtering in environmental DNA amplicon analysis. Authorea.",
+  textVersion = "Koseki, Y., Takeshima, H., Yoneda, R., Katayanagi, K., Ito, G., & Yamanaka, H. (2025). <i>gmmDenoise</i>: a new method and <i>R</i> package for high-confidence sequence variant filtering in environmental DNA amplicon analysis. Molecular Ecology Resources. Advance online publication. https://doi.org/10.1111/1755-0998.70023",
   author = c(
     person(given = "Yusuke", family = "Koseki"),
     person(given = "Hirohiko", family = "Takeshima"),
@@ -11,12 +11,8 @@ bibentry(
     person(given = "Hiroki", family = "Yamanaka")
   ),
   year = "2025",
-  title = "gmmDenoise: a new method and R package for high-confidence sequence variant filtering in environmental DNA amplicon analysis",
-  journal = "Authorea",
-  volume = "",
-  number = "",
-  pages = "",
-  doi = "10.5281/zenodo.15015857",
-  note = "This is a preprint currently under peer review",
-  url = "https://github.com/YSKoseki/gmmDenoise"
+  title = "\\textit{gmmDenoise}: a new method and \\textit{R} package for high-confidence sequence variant filtering in environmental DNA amplicon analysis",
+  journal = "Molecular Ecology Resources",
+  note = "Advance online publication",
+  url = "https://doi.org/10.1111/1755-0998.70023"
 )
