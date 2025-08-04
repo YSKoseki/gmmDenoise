@@ -172,7 +172,7 @@ ASVs and their read count variation.
 As illustrated in the workflow above (the “Denoising & Chimera Removal”
 step), `gmmDenoise` can work complementarily with existing denoising
 algorithms, such as `DADA2` (Callahan et al. 2016) and `UNOISE3` (Edgar
-2016). Our analyses (Koseki et al., submitted) indicate that this
+2016). Our analyses (Koseki et al., 2025) indicate that this
 complementary use enhance denoising performance, resulting in fewer
 false-positive ASVs.
 

@@ -129,7 +129,7 @@ This is our recommended workflow for processing eDNA metabarcoding data for gene
 
 We recommend running gmmDenoise separately for each sequencing run. Although a more stringent approach would be to apply it to individual samples within a run, our preliminary analysis indicated that this was not practical&mdash;likely due to insufficient information on the ASV read count distribution within single samples, which depends on the number of ASVs and their read count variation.
 
-As illustrated in the workflow above (the "Denoising & Chimera Removal" step), `gmmDenoise` can work complementarily with existing denoising algorithms, such as `DADA2` (Callahan et al. 2016) and `UNOISE3` (Edgar 2016). Our analyses (Koseki et al., submitted) indicate that this complementary use enhance denoising performance, resulting in fewer false-positive ASVs.
+As illustrated in the workflow above (the "Denoising & Chimera Removal" step), `gmmDenoise` can work complementarily with existing denoising algorithms, such as `DADA2` (Callahan et al. 2016) and `UNOISE3` (Edgar 2016). Our analyses (Koseki et al., 2025) indicate that this complementary use enhance denoising performance, resulting in fewer false-positive ASVs.
 
 References:
 
