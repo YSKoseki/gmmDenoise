@@ -135,7 +135,7 @@ References:
 
 - Callahan, B. J., McMurdie, P. J., Rosen, M. J., Han, A. W., Johnson, A. J. A., & Holmes, S. P. (2016). *DADA2*: High-resolution sample inference from Illumina amplicon data. Nature Methods, 13(7), 581—583.
 - Edgar, R. C. (2016). *UNOISE2*: Improved error-correction for Illumina 16S and ITS amplicon sequencing. bioRxiv, 081257.
-- Koseki, Y., Takeshima, H., Yoneda, R., Katayanagi, K., Ito, G., & Yamanaka, H. (2025). *gmmDenoise*: a new method and *R* package for high-confidence sequence variant filtering in environmental DNA amplicon analysis. Molecular Ecology Resources. Advance online publication. [https://doi.org/10.1111/1755-0998.70023](https://doi.org/10.1111/1755-0998.70023). 
+- Koseki, Y., Takeshima, H., Yoneda, R., Katayanagi, K., Ito, G., & Yamanaka, H. (2025). *gmmDenoise*: a new method and *R* package for high-confidence sequence variant filtering in environmental DNA amplicon analysis. Molecular Ecology Resources 25(8): e70023. [https://doi.org/10.1111/1755-0998.70023](https://doi.org/10.1111/1755-0998.70023). 
 
 ## Cite as
 <!--
@@ -146,7 +146,7 @@ The above DOI corresponds to the latest versioned release as [published to Zenod
 
 To cite `gmmDenoise` in publications, please use:
 
-Koseki, Y., Takeshima, H., Yoneda, R., Katayanagi, K., Ito, G., & Yamanaka, H. (2025). *gmmDenoise*: a new method and *R* package for high-confidence sequence variant filtering in environmental DNA amplicon analysis. Molecular Ecology Resources. Advance online publication. [https://doi.org/10.1111/1755-0998.70023](https://doi.org/10.1111/1755-0998.70023).
+Koseki, Y., Takeshima, H., Yoneda, R., Katayanagi, K., Ito, G., & Yamanaka, H. (2025). *gmmDenoise*: a new method and *R* package for high-confidence sequence variant filtering in environmental DNA amplicon analysis. Molecular Ecology Resources 25(8): e70023. [https://doi.org/10.1111/1755-0998.70023](https://doi.org/10.1111/1755-0998.70023).
 
 A BibTeX entry for LateX users is [here](inst/CITATION).
 
