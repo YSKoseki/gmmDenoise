@@ -8,7 +8,7 @@
 [![R-CMD-check](https://github.com/YSKoseki/gmmDenoise/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/YSKoseki/gmmDenoise/actions/workflows/R-CMD-check.yaml)
 ![Static
 Badge](https://img.shields.io/badge/license-GPL_(%3E%3D_2)-blue)
-[![DOI](https://zenodo.org/badge/489551728.svg)](https://zenodo.org/badge/latestdoi/489551728)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15015858.svg)](https://doi.org/10.5281/zenodo.15015858)
 <!-- badges: end -->
 
 ## Overview
